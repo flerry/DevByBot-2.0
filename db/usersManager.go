@@ -54,7 +54,7 @@ func RemoveBan(chatID int64) error {
 		return err
 	}
 
-	_, err = stmt.Query(23456)
+	_, err = stmt.Query(chatID)
 	if err != nil {
 		log.Println("Ошибка: не удалось выполнить запрос на разбан юзера.")
 		return err
