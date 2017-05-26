@@ -1,25 +1,22 @@
 package parsers
 
 import (
-	"fmt"
+	"DevByBot-2.0/db"
 	"github.com/emirpasic/gods/lists/arraylist"
 	"github.com/go-telegram-bot-api/telegram-bot-api"
-	"github.com/kennygrant/sanitize"
 	"github.com/mmcdole/gofeed"
 	"io"
 	"log"
 	"net/http"
-	"newDevByBot/db"
 	"os"
 	"strings"
 	"time"
 )
 
 type Post struct {
-	Title       string
-	Description string
-	Link        string
-	ImageLink   string
+	Title     string
+	Link      string
+	ImageLink string
 }
 
 var bot *tgbotapi.BotAPI
@@ -44,10 +41,9 @@ func ParseFeed(nowLink string) {
 
 		if link != oldLink {
 			post := Post{
-				Title:       feed.Items[0].Title,
-				Description: strings.Replace(sanitize.HTML(feed.Items[0].Description), "Читать далее", "", -1),
-				Link:        link,
-				ImageLink:   feed.Items[0].Enclosures[0].URL,
+				Title:     feed.Items[0].Title,
+				Link:      link,
+				ImageLink: feed.Items[0].Enclosures[0].URL,
 			}
 
 			listID := db.SelectAllChatID()
@@ -86,7 +82,7 @@ func SendNews(post *Post, chatIDs arraylist.List) {
 
 	for index := 0; index < chatIDs.Size(); index++ {
 		chatID, _ := chatIDs.Get(index)
-		caption := fmt.Sprintf("%s\n\n%s", post.Title, post.Description)
+		caption := post.Title
 
 		msg := tgbotapi.NewPhotoUpload(int64(chatID.(int)), name)
 		msg.Caption = caption

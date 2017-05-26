@@ -2,8 +2,8 @@ package parsers
 
 import (
 	"github.com/PuerkitoBio/goquery"
-	"log"
 	"github.com/go-telegram-bot-api/telegram-bot-api"
+	"log"
 )
 
 func ParseSalaries(chatID int64) {
@@ -28,8 +28,8 @@ func ParseSalaries(chatID int64) {
 
 func setInlineSalaries(average string, median string) tgbotapi.InlineKeyboardMarkup {
 	kb := tgbotapi.NewInlineKeyboardMarkup(
-		tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonData("Средняя: " + average + "$", "1"),
-			tgbotapi.NewInlineKeyboardButtonData("Медиана: " + median + "$", "1")),
+		tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonData("Средняя: "+average+"$", "1"),
+			tgbotapi.NewInlineKeyboardButtonData("Медиана: "+median+"$", "1")),
 		tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL("Узнать подробнее", "https://salaries.dev.by")))
 
 	return kb

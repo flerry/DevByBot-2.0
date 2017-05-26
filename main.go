@@ -1,12 +1,12 @@
 package main
 
 import (
+	"DevByBot-2.0/db"
+	"DevByBot-2.0/parsers"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-telegram-bot-api/telegram-bot-api"
 	"log"
-	"newDevByBot/db"
-	"newDevByBot/parsers"
 	"os"
 	"strconv"
 	"strings"
@@ -65,7 +65,7 @@ func main() {
 			case update.Message.Text == "/start":
 				{
 					msg := tgbotapi.NewMessage(update.Message.Chat.ID,
-						"Привет, " + update.Message.Chat.UserName + "! Я - бот ресурса Dev.by. "+
+						"Привет, "+update.Message.Chat.UserName+"! Я - бот ресурса Dev.by. "+
 							"Получайте ИТ-новости одновременно с их выходом на сайте и пользуйтесь дополнительными возможностями с помощью кнопок.")
 					msg.ReplyMarkup = setSubscribeKeyboard()
 
@@ -96,10 +96,10 @@ func main() {
 					var infoText string
 
 					if update.Message.Chat.UserName == "" {
-						infoText = "Ваша подписка успешно удалена! "+
+						infoText = "Ваша подписка успешно удалена! " +
 							"Чтобы оформить подписку, нажмите на \"Subscribe\""
 					} else {
-						infoText = update.Message.Chat.UserName + ", Ваша подписка успешно удалена! "+
+						infoText = update.Message.Chat.UserName + ", Ваша подписка успешно удалена! " +
 							"Чтобы оформить подписку, нажмите на \"Subscribe\""
 					}
 
