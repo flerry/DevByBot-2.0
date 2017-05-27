@@ -31,7 +31,7 @@ func init() {
 
 	db.Setup()
 
-	bot, _ = tgbotapi.NewBotAPI("314564211:AAH59sKgMcht-F_sVevp3jGXLo9j2VELRqg")
+	bot, _ = tgbotapi.NewBotAPI("286707737:AAE6Q8j0HFdpH-mxGOyMfE7u17AkyIr5y28")
 	if len(bot.Token) == 0 {
 		log.Fatal("Ошибка: не удалось инициализировать бота.")
 	}

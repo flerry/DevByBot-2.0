@@ -9,7 +9,10 @@ import (
 func ParseSalaries(chatID int64) {
 	doc, err := goquery.NewDocument("https://salaries.dev.by")
 	if err != nil {
-		log.Fatal(err)
+		log.Println("Не удалось спарсить зарплаты.")
+		msg := tgbotapi.NewMessage(chatID, "Извините, мне не удалось получить список зарплат. Скорее всего это - проблема сайта.")
+		bot.Send(msg)
+		return
 	}
 
 	var average, median string

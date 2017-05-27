@@ -11,9 +11,10 @@ func ParseEvents(chatID int64) {
 	feed, err := fp.ParseURL("https://events.dev.by/rss")
 
 	if err != nil {
-		log.Println("Не удалось спарсить rss.")
-		msg := tgbotapi.NewMessage(chatID, "Извините, мне не удалось получить список ближайших событий.")
+		log.Println("Не удалось спарсить события.")
+		msg := tgbotapi.NewMessage(chatID, "Извините, мне не удалось получить список ближайших событий. Скорее всего это - проблема сайта.")
 		bot.Send(msg)
+		return
 	}
 
 	titles := make([]string, 7, 7)
